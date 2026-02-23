@@ -1,0 +1,6 @@
+[build]
+rustflags = [
+    "-Z", "share-generics=false",
+    "-Z", "location-detail=none",
+    "-Z", "fmt-debug=none",
+]
