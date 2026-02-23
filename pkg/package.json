@@ -1,0 +1,11 @@
+{
+  "name": "stegcloak-rs",
+  "version": "1.0.0",
+  "files": [
+    "stegcloak_rs_bg.wasm",
+    "stegcloak_rs.js",
+    "stegcloak_rs.d.ts"
+  ],
+  "main": "stegcloak_rs.js",
+  "types": "stegcloak_rs.d.ts"
+}
