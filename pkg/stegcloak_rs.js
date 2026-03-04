@@ -2,6 +2,8 @@
 
 import stegcloak_path from "./stegcloak_rs_bg.wasm";
 import { readFileSync } from "node:fs";
+import { fileURLToPath } from "node:url";
+import { resolve, dirname } from "node:path";
 
 let wasm;
 
@@ -178,13 +180,6 @@ export class StegCloak {
         const ptr = this.__destroy_into_raw();
         wasm.__wbg_stegcloak_free(ptr, 0);
     }
-    /**
-     * @param {string} message
-     * @param {string} password
-     * @param {string} salt
-     * @param {string} cover
-     * @returns {string}
-     */
     hide(message, password, salt, cover) {
         let deferred6_0;
         let deferred6_1;
@@ -217,10 +212,6 @@ export class StegCloak {
             wasm.__wbindgen_export4(deferred6_0, deferred6_1, 1);
         }
     }
-    /**
-     * @param {string} text
-     * @returns {boolean}
-     */
     static isCloaked(text) {
         const ptr0 = passStringToWasm0(text, wasm.__wbindgen_export2, wasm.__wbindgen_export3);
         const len0 = WASM_VECTOR_LEN;
@@ -233,12 +224,6 @@ export class StegCloak {
         StegCloakFinalization.register(this, this.__wbg_ptr, this);
         return this;
     }
-    /**
-     * @param {string} secret
-     * @param {string} password
-     * @param {string} salt
-     * @returns {string}
-     */
     reveal(secret, password, salt) {
         let deferred5_0;
         let deferred5_1;
@@ -269,9 +254,6 @@ export class StegCloak {
             wasm.__wbindgen_export4(deferred5_0, deferred5_1, 1);
         }
     }
-    /**
-     * @returns {Array<any>}
-     */
     static zwc() {
         const ret = wasm.stegcloak_zwc();
         return takeObject(ret);
@@ -279,6 +261,9 @@ export class StegCloak {
 }
 if (Symbol.dispose) StegCloak.prototype[Symbol.dispose] = StegCloak.prototype.free;
 
-const wasmBytes = readFileSync(stegcloak_path);
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+const resolvedWasmPath = resolve(__dirname, stegcloak_path);
+const wasmBytes = readFileSync(resolvedWasmPath);
 const wasmModule = new WebAssembly.Module(wasmBytes);
 wasm = new WebAssembly.Instance(wasmModule, __wbg_get_imports()).exports;
