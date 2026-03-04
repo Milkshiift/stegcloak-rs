@@ -1,11 +1,17 @@
 {
   "name": "stegcloak-rs",
+  "type": "module",
   "version": "1.0.0",
   "files": [
     "stegcloak_rs_bg.wasm",
     "stegcloak_rs.js",
+    "stegcloak_rs_bg.js",
     "stegcloak_rs.d.ts"
   ],
   "main": "stegcloak_rs.js",
-  "types": "stegcloak_rs.d.ts"
+  "types": "stegcloak_rs.d.ts",
+  "sideEffects": [
+    "./stegcloak_rs.js",
+    "./snippets/*"
+  ]
 }
