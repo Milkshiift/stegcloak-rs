@@ -1,6 +1,7 @@
 {
   "name": "stegcloak-rs",
   "version": "1.0.0",
+  "type": "module",
   "files": [
     "./pkg/stegcloak_rs_bg.wasm",
     "./pkg/stegcloak_rs.js",
